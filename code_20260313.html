@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>陈奕志的个人主页</title>
+  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    :root {
+      --primary-color: #4a9eff;
+      --secondary-color: #00ffe0;
+      --bg-dark: #050a1a;
+      --card-bg: rgba(255, 255, 255, 0.08);
+      --text-light: #f0f0f0;
+      --shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: var(--text-light);
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+    .stars-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: var(--bg-dark);
+      z-index: -1;
+      overflow: hidden;
+    }
+    .star {
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      background: #fff;
+      border-radius: 50%;
+      animation: twinkle 2s infinite ease-in-out;
+    }
+    @keyframes twinkle {
+      0%,100%{opacity:0.3; transform:scale(1);}
+      50%{opacity:1; transform:scale(1.2);}
+    }
+    .star.large {
+      width: 3px;
+      height: 3px;
+      background: #ffe89e;
+      box-shadow: 0 0 4px 1px #ffe89e;
+    }
+    .header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(10,15,35,0.6);
+      backdrop-filter: blur(15px);
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      z-index: 100;
+      padding: 15px 0;
+      transition: top 0.3s ease;
+    }
+    .header.hide { top: -100px; }
+    .header-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .logo {
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--primary-color);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .nav {
+      display: flex;
+      gap: 30px;
+    }
+    .nav-link {
+      color: var(--text-light);
+      text-decoration: none;
+      font-size: 16px;
+      font-weight: 500;
+      padding: 8px 12px;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .nav-link:hover {
+      background: rgba(74,158,255,0.1);
+      color: var(--primary-color);
+      transform: translateY(-2px);
+    }
+    .nav-link.active {
+      background: rgba(74,158,255,0.15);
+      color: var(--primary-color);
+    }
+    .main-content {
+      max-width: 1200px;
+      margin: 120px auto 50px;
+      padding: 0 20px;
+    }
+    .content-section {
+      margin-bottom: 140px;
+      border-radius: 16px;
+      background: var(--card-bg);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.1);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+    .content-section:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+      border-color: rgba(74,158,255,0.3);
+    }
+    .section-content { padding: 40px; }
+    .content-section h2 {
+      font-size: 32px;
+      margin-bottom: 25px;
+      color: var(--primary-color);
+    }
+    .content-section p {
+      font-size: 18px;
+      margin-bottom: 20px;
+      opacity: 0.9;
+    }
+    .btn {
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      color: white;
+      text-decoration: none;
+      border: none;
+      padding: 12px 24px;
+      font-size: 16px;
+      font-weight: 600;
+      border-radius: 8px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.3s ease;
+    }
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(74,158,255,0.5);
+    }
+    .feature-list {
+      list-style: none;
+      margin-top: 20px;
+    }
+    .feature-list li {
+      font-size: 18px;
+      margin: 12px 0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 25px;
+      margin-top: 30px;
+    }
+    .feature-card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 12px;
+      padding: 30px 20px;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+    .feature-card:hover {
+      background: rgba(74,158,255,0.1);
+      transform: translateY(-5px);
+      border-color: var(--primary-color);
+    }
+    .feature-card i {
+      font-size: 40px;
+      color: var(--primary-color);
+      margin-bottom: 20px;
+    }
+    .contact-info p {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 15px 0;
+      font-size: 18px;
+    }
+    @media (max-width:768px){
+      .header-container{flex-direction:column;gap:15px;}
+      .nav{gap:15px;flex-wrap:wrap;justify-content:center;}
+      .section-content{padding:25px;}
+    }
+  </style>
+</head>
+<body>
+  <div class="stars-bg"></div>
+  <header class="header">
+    <div class="header-container">
+      <h1 class="logo"><i class="fas fa-user"></i> 陈奕志</h1>
+      <nav class="nav">
+        <a href="#section1" class="nav-link"><i class="fas fa-home"></i> 首页</a>
+        <a href="#section2" class="nav-link"><i class="fas fa-info-circle"></i> MBTI</a>
+        <a href="#section3" class="nav-link"><i class="fas fa-star"></i> 星座</a>
+        <a href="#section4" class="nav-link"><i class="fas fa-heart"></i> 爱好</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- 主内容 -->
+<main class="main-content">
+  <section id="section1" class="content-section">
+    <div class="section-content">
+      <h2> 陈奕志</h2>
+      <p>大家好，我的名字叫陈奕志，来自广东省揭阳市普宁市。</p>
+      <a href="#section2" class="btn">了解更多 <i class="fas fa-arrow-right"></i></a>
+    </div>
+  </section>
+
+  <section id="section2" class="content-section">
+    <div class="section-content">
+      <h2> MBTI</h2>
+      <p>这里是我的MBTI人格介绍，包含我的的性格类型、特点与行为风格。</p>
+      <ul class="feature-list">
+        <li><i class="fas fa-check"></i> 人格类型：ENTJ</li>
+        <li><i class="fas fa-check"></i> 性格优势：外向果断，理性冷静。</li>
+        <li><i class="fas fa-check"></i> 社交模式：在与他人相处时，我通常不会保持沉默，而是主动找话题尝试和对方聊天。</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="section3" class="content-section">
+    <div class="section-content">
+      <h2> 星座——白羊座</h2>
+      <p>这里是我的星座信息，包含性格特质、专属运势与个性解析。</p>
+      <div class="card-grid">
+        <div class="feature-card">
+          <i class="fas fa-star"></i>
+          <h3>星座信息</h3>
+          <p>火象星座 · 直率热血 · 行动力拉满</p>
+        </div>
+        <div class="feature-card">
+          <i class="fas fa-moon"></i>
+          <h3>性格特点</h3>
+          <p>乐观勇敢、直接真诚、爱挑战、有主见</p>
+        </div>
+        <div class="feature-card">
+          <i class="fas fa-heart"></i>
+          <h3>优势关键词</h3>
+          <p>执行力、热情、敢想敢做</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="section4" class="content-section">
+    <div class="section-content">
+      <h2> 爱好</h2>
+      <p>这里是我的兴趣爱好，记录生活与喜欢做的事情。</p>
+      <div class="contact-info">
+        <p><i class="fas fa-gamepad"></i> 游戏 / 动漫</p>
+        <p><i class="fas fa-code"></i> 编程、前端学习</p>
+        <p><i class="fas fa-film"></i> 看视频、剪辑创作</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+  <script>
+    function createStars(){
+      const s=document.querySelector('.stars-bg');
+      for(let i=0;i<200;i++){
+        const d=document.createElement('div');
+        d.className='star'+(Math.random()>0.8?' large':'');
+        d.style.left=Math.random()*100+'vw';
+        d.style.top=Math.random()*100+'vh';
+        d.style.animationDelay=Math.random()*2+'s';
+        s.appendChild(d);
+      }
+    }
+    let last=0;
+    function toggleHeader(){
+      const h=document.querySelector('.header');
+      const y=window.scrollY;
+      if(y<=10) h.classList.remove('hide');
+      else if(y>last) h.classList.add('hide');
+      else h.classList.remove('hide');
+      last=y;
+    }
+    window.addEventListener('DOMContentLoaded',()=>{
+      createStars();
+    });
+    window.addEventListener('scroll',toggleHeader);
+  </script>
+</body>
+</html>
