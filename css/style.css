@@ -1,0 +1,316 @@
+/* 全局重置与基础样式 */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary-color: #4a9eff;
+  --secondary-color: #00ffe0;
+  --bg-dark: #050a1a;
+  --card-bg: rgba(255, 255, 255, 0.08);
+  --text-light: #f0f0f0;
+  --shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: var(--text-light);
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+/* 🌟 动态星空背景核心样式 */
+.stars-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: var(--bg-dark);
+  z-index: -1;
+  overflow: hidden;
+}
+
+/* 星星元素 - 动态生成 */
+.star {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: #fff;
+  border-radius: 50%;
+  animation: twinkle 2s infinite ease-in-out;
+}
+
+/* 星星闪烁动画 */
+@keyframes twinkle {
+  0%, 100% { opacity: 0.3; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.2); }
+}
+
+/* 大星星样式 */
+.star.large {
+  width: 3px;
+  height: 3px;
+  background: #ffe89e;
+  box-shadow: 0 0 4px 1px #ffe89e;
+}
+
+/* 顶部导航栏 - 玻璃拟态 */
+.header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: rgba(10, 15, 35, 0.6);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  z-index: 100;
+  padding: 15px 0;
+  /* 新加下面三行 */
+  transition: top 0.3s ease;
+}
+/* 滚动时隐藏 */
+.header.hide {
+  top: -100px;
+}
+
+.header-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--primary-color);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-shadow: 0 0 10px rgba(74, 158, 255, 0.5);
+}
+
+.logo i {
+  color: var(--secondary-color);
+}
+
+.nav {
+  display: flex;
+  gap: 30px;
+}
+
+.nav-link {
+  color: var(--text-light);
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 500;
+  padding: 8px 12px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.nav-link:hover {
+  background: rgba(74, 158, 255, 0.1);
+  color: var(--primary-color);
+  transform: translateY(-2px);
+}
+
+.nav-link.active {
+  background: rgba(74, 158, 255, 0.15);
+  color: var(--primary-color);
+  box-shadow: 0 0 8px rgba(74, 158, 255, 0.3);
+}
+
+/* 主内容区域 */
+.main-content {
+  max-width: 1200px;
+  margin: 120px auto 50px;
+  padding: 0 20px;
+}
+
+/* 内容板块 - 玻璃拟态卡片 */
+.content-section {
+  margin-bottom: 140px;
+  border-radius: 16px;
+  background: var(--card-bg);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.content-section:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+  border-color: rgba(74, 158, 255, 0.3);
+}
+
+.section-content {
+  padding: 40px;
+}
+
+.content-section h2 {
+  font-size: 32px;
+  margin-bottom: 25px;
+  color: var(--primary-color);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-shadow: 0 0 8px rgba(74, 158, 255, 0.4);
+}
+
+.content-section h2 i {
+  color: var(--secondary-color);
+}
+
+.content-section p {
+  font-size: 18px;
+  margin-bottom: 20px;
+  opacity: 0.9;
+}
+
+/* 按钮样式 */
+.btn {
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(74, 158, 255, 0.3);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(74, 158, 255, 0.5);
+}
+
+/* 特性列表 */
+.feature-list {
+  list-style: none;
+  margin-top: 20px;
+}
+
+.feature-list li {
+  font-size: 18px;
+  margin: 12px 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.feature-list li i {
+  color: var(--secondary-color);
+  font-size: 20px;
+}
+
+/* 卡片网格 */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
+  margin-top: 30px;
+}
+
+.feature-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 30px 20px;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.feature-card:hover {
+  background: rgba(74, 158, 255, 0.1);
+  transform: translateY(-5px);
+  border-color: var(--primary-color);
+}
+
+.feature-card i {
+  font-size: 40px;
+  color: var(--primary-color);
+  margin-bottom: 20px;
+  text-shadow: 0 0 10px rgba(74, 158, 255, 0.5);
+}
+
+.feature-card h3 {
+  font-size: 22px;
+  margin-bottom: 10px;
+  color: var(--text-light);
+}
+
+.feature-card p {
+  opacity: 0.8;
+}
+
+/* 联系信息 */
+.contact-info {
+  margin-top: 25px;
+}
+
+.contact-info p {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 15px 0;
+  font-size: 18px;
+}
+
+.contact-info i {
+  color: var(--secondary-color);
+  font-size: 20px;
+  width: 30px;
+  text-align: center;
+}
+
+/* 平滑滚动 */
+html {
+  scroll-behavior: smooth;
+}
+
+/* 响应式适配 - 手机端 */
+@media (max-width: 768px) {
+  .header-container {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .nav {
+    gap: 15px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .main-content {
+    margin-top: 160px;
+  }
+
+  .section-content {
+    padding: 25px;
+  }
+
+  .content-section h2 {
+    font-size: 26px;
+  }
+
+  .card-grid {
+    grid-template-columns: 1fr;
+  }
+}
